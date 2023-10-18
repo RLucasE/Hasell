@@ -4,7 +4,7 @@ import Data.Char (isDigit, digitToInt)
 -- venden 2 Cel. a $7599" ­> Resultado: 40
 
 digitFromText :: String -> String
-digitFromText = filter isDigit 
+digitFromText = filter isDigit
 
 pasarListaInt :: String -> [Int]
 pasarListaInt = map digitToInt
@@ -17,11 +17,11 @@ sumDigitFromText :: String -> Int
 sumDigitFromText lis = sumarLista (pasarListaInt (digitFromText lis))
 
 biseccion :: (Double -> Double) -> Double -> Double -> Double -> Double
-biseccion f a b e 
- | abs (f c) < e = c 
+biseccion f a b e
+ | abs (f c) < e = c
  | f c * f a < 0 = biseccion f a c e
  | f c * f a > 0 = biseccion f c b e
-  where 
+  where
     c = (a + b) / 2
 
 g :: Int -> Int
@@ -29,3 +29,11 @@ g = (*) (-1)
 
 f :: Int -> [Int] -> [Int]
 f e l = map (g . (e+)) (filter (5<) l)
+
+intercalar :: Eq a => a -> [a] -> [a]
+intercalar _ [] = []
+intercalar valor (x:xs) = [x] ++ [valor] ++ intercalar valor xs
+
+acoplarCon :: (a -> a -> a) -> [a] -> [a] -> [a]
+acoplarCon _ [] _ = []
+acoplarCon f (x1:xs1) (x2:xs2) = f x1 x2 : acoplarCon f xs1 xs2
