@@ -37,3 +37,14 @@ intercalar valor (x:xs) = [x] ++ [valor] ++ intercalar valor xs
 acoplarCon :: (a -> a -> a) -> [a] -> [a] -> [a]
 acoplarCon _ [] _ = []
 acoplarCon f (x1:xs1) (x2:xs2) = f x1 x2 : acoplarCon f xs1 xs2
+
+codCesar :: Int -> String -> String
+codCesar n (x:xs) = correrLetra n ([x..'z']++['a'..x]) : codCesar n xs
+
+correrLetra :: Int -> String -> Char
+correrLetra _ [] = ' '
+correrLetra n (x:xs)
+ |n== 0 = x
+ |n > 0 = correrLetra (n-1) xs
+
+  
